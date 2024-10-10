@@ -22,14 +22,14 @@ const Callback = () => {
       })
         .then(response => {
           if (response.status === 200) {
-            toast.success('Verification successful...');
+            toast.success('Verification In Process...');
             const token = response.data.jwtToken;
             localStorage.setItem('jwtToken', token);
 
             // user auth
-            axios.get(`https://api.notreal003.xyz/auth/user${token}`, {
+            axios.get(`https://api.notreal003.xyz/auth/user?callback=${token}`, {
               headers: {
-                'Authorization': `User ${token}`,
+                'Authorization': `Account ${token}`,
               },
             })
               .then(userResponse => {
@@ -39,6 +39,7 @@ const Callback = () => {
               })
               .catch(userError => {
                 console.error('Error during user authentication:', userError);
+                setLoading(false);
                 setError(userError.response?.data?.message || 'An error occurred while verifying user.');
               });
           }
