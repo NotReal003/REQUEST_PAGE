@@ -34,7 +34,7 @@ const Callback = () => {
             })
               .then(userResponse => {
                 if (userResponse.status === 200) {
-                  navigate('/'); // to gome
+                  navigate('/profile'); // to profile page
                 }
               })
               .catch(userError => {
