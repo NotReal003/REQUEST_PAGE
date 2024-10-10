@@ -8,14 +8,15 @@ const Callback = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null); // State to handle API errors
   const [loading, setLoading] = useState(null);
+
   useEffect(() => {
-    // Extract 'code' from URL query params
+    // Get Code
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
     if (code) {
       setLoading(true);
-      // Send a GET request to your API with the Discord code
+      // Discord Auth
       axios.get(`https://api.notreal003.xyz/auth/callback?code=${code}`, {
         withCredentials: false,
       })
@@ -24,14 +25,29 @@ const Callback = () => {
             toast.success('Verification successful...');
             const token = response.data.jwtToken;
             localStorage.setItem('jwtToken', token);
-            window.location.href = `https://api.notreal003.xyz/auth/user?callback=${token}`;
+
+            // user auth
+            axios.get(`https://api.notreal003.xyz/auth/user${token}`, {
+              headers: {
+                'Authorization': `User ${token}`,
+              },
+            })
+              .then(userResponse => {
+                if (userResponse.status === 200) {
+                  navigate('/'); // to gome
+                }
+              })
+              .catch(userError => {
+                console.error('Error during user authentication:', userError);
+                setError(userError.response?.data?.message || 'An error occurred while verifying user.');
+              });
           }
         })
         .catch(error => {
           console.error('Error during authentication:', error);
           // Set error message from the API response
           setLoading(false);
-          setError(error.response.data.message || 'An error occurred while signing in.');
+          setError(error.response?.data?.message || 'An error occurred while signing in.');
         });
     } else {
       toast.error('No authorization code found in URL. Please SignIn again.');
