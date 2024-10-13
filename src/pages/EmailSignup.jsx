@@ -121,8 +121,8 @@ const EmailSignup = () => {
 
             <button
               disabled={loading}
-              type="submit" className="btn btn-primary w-full no-animation">
-              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" />Sign Up</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Sign Up</span>}
+              type="submit" className="btn no-animation btn-primary w-full no-animation">
+              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-1" />Sign Up</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Sign Up</span>}
             </button>
           </form>
         )}
@@ -141,8 +141,8 @@ const EmailSignup = () => {
             </div>
             <button
               disabled={loading}
-              type="submit" className="btn btn-primary w-full no-animation">
-              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" />Verify</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify</span>}
+              type="submit" className="btn no-animation btn-primary w-full no-animation">
+              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-1" />Verify</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify</span>}
             </button>
           </form>
         )}

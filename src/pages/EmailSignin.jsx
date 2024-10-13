@@ -72,7 +72,7 @@ const EmailSignin = () => {
               <div className="mb-4">
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder="example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="input input-bordered w-full"
@@ -80,8 +80,8 @@ const EmailSignin = () => {
                   disabled={loading} // Disable input while loading
                 />
               </div>
-              <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-                {loading ? <span><FaSpinner className="animate-spin inline-block mr-2" />Send Verification Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Send Verification Code</span>}
+              <button type="submit" className="btn no-animation btn-primary w-full" disabled={loading}>
+                {loading ? <span><FaSpinner className="animate-spin inline-block mr-1" />Send Verification Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Send Verification Code</span>}
               </button>
             </form>
           </>
@@ -100,8 +100,8 @@ const EmailSignin = () => {
                   disabled={loading} // Disable input while loading
                 />
               </div>
-              <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-                {loading ? <span><FaSpinner className="animate-spin inline-block mr-2" /> Verify Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify Code</span>}
+              <button type="submit" className="btn no-animation btn-primary w-full" disabled={loading}>
+                {loading ? <span><FaSpinner className="animate-spin inline-block mr-1" /> Verify Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify Code</span>}
               </button>
             </form>
           </>
