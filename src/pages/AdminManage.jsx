@@ -9,6 +9,7 @@ const BlockUserPage = () => {
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [nonBlockedUsers, setNonBlockedUsers] = useState([]);
   const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API;
@@ -16,6 +17,7 @@ const BlockUserPage = () => {
   // Fetch blocked and non-blocked users from the API
   const fetchBlockedUsers = useCallback(async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${API}/users/blocks`, {
         headers: {
           Authorization: `${localStorage.getItem('jwtToken')}`,
@@ -28,12 +30,15 @@ const BlockUserPage = () => {
 
       setBlockedUsers(blocked);
       setNonBlockedUsers(nonBlocked);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       const errorStatus = error.response?.status;
       if (errorStatus === 403) {
         // Navigate to the 404 page if forbidden
         navigate('/PageNotFound');
       } else {
+        setLoaing(false);
         const errorMessage = error.response?.data?.message || 'Failed to load users. Please try again later.';
         console.error('Error fetching blocked users:', error);
         setError(`${errorStatus}: ${errorMessage || 'Failed to fetch users. Please try again.'}`);
@@ -106,8 +111,8 @@ const BlockUserPage = () => {
     }
   };
 
-  if (!blockedUsers) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div>Verifying...</div>;
   }
 
   return (
