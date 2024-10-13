@@ -81,7 +81,7 @@ const EmailSignin = () => {
                 />
               </div>
               <button type="submit" className="btn no-animation btn-primary w-full" disabled={loading}>
-                {loading ? <span><FaSpinner className="animate-spin inline-block mr-1" />Send Verification Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Send Verification Code</span>}
+                {loading ? <span><FaSpinner className="animate-spin inline-block mr-2" />Send Verification Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Send Verification Code</span>}
               </button>
             </form>
           </>
@@ -101,7 +101,7 @@ const EmailSignin = () => {
                 />
               </div>
               <button type="submit" className="btn no-animation btn-primary w-full" disabled={loading}>
-                {loading ? <span><FaSpinner className="animate-spin inline-block mr-1" /> Verify Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify Code</span>}
+                {loading ? <span><FaSpinner className="animate-spin inline-block mr-2" /> Verify Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify Code</span>}
               </button>
             </form>
           </>
