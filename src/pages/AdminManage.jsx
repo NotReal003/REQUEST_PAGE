@@ -38,7 +38,7 @@ const BlockUserPage = () => {
         // Navigate to the 404 page if forbidden
         navigate('/PageNotFound');
       } else {
-        setLoaing(false);
+        setLoading(false);
         const errorMessage = error.response?.data?.message || 'Failed to load users. Please try again later.';
         console.error('Error fetching blocked users:', error);
         setError(`${errorStatus}: ${errorMessage || 'Failed to fetch users. Please try again.'}`);
