@@ -34,7 +34,7 @@ const Callback = () => {
             })
               .then(userResponse => {
                 if (userResponse.status === 200) {
-                  navigate('/profile'); // to profile page
+                  window.location.href = 'https://request.notreal003.xyz/profile';
                 }
               })
               .catch(userError => {
