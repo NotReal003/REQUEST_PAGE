@@ -41,11 +41,17 @@ const EmailSignin = () => {
       const response = await axios.post('https://api.notreal003.xyz/auth/verify-signin-email-code', { email, code });
       const jwtToken = response.data.jwtToken;
       localStorage.setItem('jwtToken', jwtToken);
-      toast.success('Sign-in successful!');
-      window.location.href = `https://api.notreal003.xyz/auth/user?callback=${jwtToken}`;
-      setTimeout(() => {
-        window.location.href = `https://api.notreal003.xyz/auth/user?callback=${jwtToken}`;
-      }, 3000);
+      toast('Sign-in in process...!');
+      axios.get(`https://api.notreal003.xyz/auth/user?callback=${jwtToken}`, {
+        headers: {
+          'Authorization': `Account ${jwtToken}`,
+        },
+      })
+        .then(userResponse => {
+          if (userResponse.status === 200) {
+            window.location.href = 'https://request.notreal003.xyz/profile';
+          }
+        });
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'There was a problem during signup. Please try again.';
       toast.error(errorMessage);

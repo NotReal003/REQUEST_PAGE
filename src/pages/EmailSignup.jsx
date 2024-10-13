@@ -55,9 +55,17 @@ const EmailSignup = () => {
       const response = await axios.post('https://api.notreal003.xyz/auth/verify-email', { email, code: verificationCode });
       const jwtToken = response.data.jwtToken;
       localStorage.setItem('jwtToken', jwtToken);
-      toast.success('Email verified successfully! You are now signed up.');
-      setLoading(false);
-      window.location.href = `https://api.notreal003.xyz/auth/user?callback=${jwtToken}`;
+      toast.success('Verifying account...');
+      axios.get(`https://api.notreal003.xyz/auth/user?callback=${token}`, {
+        headers: {
+          'Authorization': `Account ${token}`,
+        },
+      })
+        .then(userResponse => {
+          if (userResponse.status === 200) {
+            window.location.href = 'https://request.notreal003.xyz/profile';
+          }
+        });
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Invalid or expired verification code. Please try again.';
       toast.error(errorMessage);
