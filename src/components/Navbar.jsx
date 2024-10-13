@@ -195,7 +195,10 @@ export default function Navbar({ isAuthenticated }) {
                     ) : (
                       <li>
                         <Link to="https://api.notreal003.xyz/auth/signin" className="flex items-center gap-x-2 hover:text-blue-500">
-                          <IoLogIn className="size-4" /> <span>Sign in</span>
+                          <IoLogIn className="size-4" /> <span>Sign in with Discord</span>
+                        </Link>
+                        <Link to="https://request.notreal003.xyz/email-signin" className="flex items-center gap-x-2 hover:text-blue-500">
+                          <IoLogIn className="size-4" /> <span>Sign in with Email</span>
                         </Link>
                       </li>
                     )}

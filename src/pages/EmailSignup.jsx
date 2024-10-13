@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaSpinner } from "react-icons/fa";
+import { IoLogIn } from "react-icons/io5";
 
 const EmailSignup = () => {
   const [email, setEmail] = useState('');
@@ -56,9 +57,9 @@ const EmailSignup = () => {
       const jwtToken = response.data.jwtToken;
       localStorage.setItem('jwtToken', jwtToken);
       toast.success('Verifying account...');
-      axios.get(`https://api.notreal003.xyz/auth/user?callback=${token}`, {
+      axios.get(`https://api.notreal003.xyz/auth/user?callback=${jwtToken}`, {
         headers: {
-          'Authorization': `Account ${token}`,
+          'Authorization': `Account ${jwtToken}`,
         },
       })
         .then(userResponse => {
@@ -121,7 +122,7 @@ const EmailSignup = () => {
             <button
               disabled={loading}
               type="submit" className="btn btn-primary w-full no-animation">
-              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" /> Signing Up... </span> : <> Submit </>}
+              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" />Sign Up</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Sign Up</span>}
             </button>
           </form>
         )}
@@ -141,7 +142,7 @@ const EmailSignup = () => {
             <button
               disabled={loading}
               type="submit" className="btn btn-primary w-full no-animation">
-              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" /> Verifying... </span> : <> Verify </>}
+              {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" />Verify</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify</span>}
             </button>
           </form>
         )}
