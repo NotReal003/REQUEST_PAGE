@@ -4,6 +4,7 @@ import axios from 'axios';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { FaSpinner } from 'react-icons/fa';
 import toast, { Toaster } from 'react-hot-toast';
+import { MdCancel } from "react-icons/md";
 
 function RequestDetail() {
   const { requestId } = useParams();
@@ -238,7 +239,7 @@ function RequestDetail() {
                 disabled={isCancelling}
                 onClick={handleCancelRequest}
               >
-                {isCancelling ? <FaSpinner className="animate-spin mr-2" /> : 'Yes, cancel it'}
+                {isCancelling ? <span><FaSpinner className="animate-spin mr-2" />Yes, cancel it</span> : <span><MdCancel className="mr-2" /> Yes, cancel it</span>}
               </button>
             </div>
           </div>
