@@ -239,7 +239,7 @@ function RequestDetail() {
                 disabled={isCancelling}
                 onClick={handleCancelRequest}
               >
-                {isCancelling ? <span><FaSpinner className="animate-spin mr-2" />Yes, cancel it</span> : <span><MdCancel className="mr-2" /> Yes, cancel it</span>}
+                {isCancelling ? <span><FaSpinner className="animate-spin inline-block align-middle mr-2" />Yes, cancel it</span> : <span><MdCancel className="inline-block align-middle mr-2" /> Yes, cancel it</span>}
               </button>
             </div>
           </div>
