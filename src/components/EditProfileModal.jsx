@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaSpinner, FaSave } from 'react-icons/fa';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EditProfileModal = ({ isOpen, onClose, currentDisplayName, onUpdate }) => {
   const [newDisplayName, setNewDisplayName] = useState(currentDisplayName);
@@ -20,13 +21,16 @@ const EditProfileModal = ({ isOpen, onClose, currentDisplayName, onUpdate }) => 
       );
 
       if (response.status === 200) {
+        toast.success('Profile updated successfully!');
         onUpdate(newDisplayName);
         onClose();
       } else {
+        toast.error(response.data.message || 'Failed to update display name.');
         setError(response.data.message || 'Failed to update display name.');
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred while updating the display name.');
+      toast.error(err.response?.data?.message || 'An error occurred while updating the display name.');
     } finally {
       setLoading(false);
     }
