@@ -25,6 +25,7 @@ export default function Navbar({ isAuthenticated }) {
             'Authorization': `${token}`
           }
         });
+        const info = await res.json();
 
         if (res.status === 403) {
           localStorage.removeItem('jwtToken');
@@ -37,7 +38,7 @@ export default function Navbar({ isAuthenticated }) {
 
         if (!res.ok) {
           setShowAlert(true);
-          setErrorIssue(res.message || 'B: Network Connection Error');
+          setErrorIssue(info.message || 'B: Network Connection Error');
         }
 
         const userData = await res.json();

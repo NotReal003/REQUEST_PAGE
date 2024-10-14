@@ -72,6 +72,7 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <Toaster />
       <div className="flex items-center space-x-4 mb-8">
         {user && user.avatarHash ? (
           <img
