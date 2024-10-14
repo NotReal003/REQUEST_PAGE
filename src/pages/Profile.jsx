@@ -76,7 +76,7 @@ const Profile = () => {
         {user && user.avatarHash ? (
           <img
             src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatarHash}.webp?size=128`}
-            className="w-24 h-24 rounded-full shadow-lg"
+            className="ring-primary ring-offset-base-100 w-24 h-24 rounded-full ring-4 ring-offset-2 shadow-lg"
             alt={user.username}
           />
         ) : (
