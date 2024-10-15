@@ -6,6 +6,7 @@ import { ImExit, ImSpinner6 } from "react-icons/im";
 import { MdNavigateNext } from "react-icons/md";
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
 import { FcSettings } from "react-icons/fc";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Navbar({ isAuthenticated }) {
   const [user, setUser] = useState(null);
@@ -46,8 +47,9 @@ export default function Navbar({ isAuthenticated }) {
         setUser(userData);
       } catch (error) {
         if (error.code === 'ERR_NETWORK');
-        setShowAlert(true);
-        setErrorIssue('C: Network Connection Error');
+        toast.error(error);
+        //setShowAlert(true);
+        //setErrorIssue('C: Network Connection Error');
       }
 
       setLoading(false);
