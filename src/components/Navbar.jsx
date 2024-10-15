@@ -60,10 +60,6 @@ export default function Navbar({ isAuthenticated }) {
     }
   }, [isAuthenticated, API]);
 
-  const handleRedirect = async () => {
-    navigate('/profile');
-  }
-
   const handleLogout = async () => {
     try {
       const res = await fetch('/api/auth/signout', {
@@ -80,6 +76,9 @@ export default function Navbar({ isAuthenticated }) {
     } catch (error) {
       setShowAlert(true);
     }
+  };
+  const handleRedirect = async () => {
+    navigate('/profile');
   };
 
   return (
