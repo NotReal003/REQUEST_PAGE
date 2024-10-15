@@ -27,20 +27,18 @@ export default function Navbar({ isAuthenticated }) {
             'Authorization': `${token}`
           }
         });
-        const info = await res.json();
 
         if (res.status === 403) {
           localStorage.removeItem('jwtToken');
           window.location.href = '/';
-        }
-        if (res.status === 0) {
-          setShowAlert(true);
-          setErrorIssue('A: Network Connection Error');
+          return;
         }
 
         if (!res.ok) {
+          const errorData = await res.json();
           setShowAlert(true);
-          setErrorIssue(info.message || 'B: Network Connection Error');
+          setErrorIssue(errorData.message || 'A: Network Connection Error');
+          return;
         }
 
         const userData = await res.json();
@@ -48,8 +46,8 @@ export default function Navbar({ isAuthenticated }) {
       } catch (error) {
         console.error(error);
         toast.error('Something went wrong!');
-        //setShowAlert(true);
-        //setErrorIssue('C: Network Connection Error');
+        setShowAlert(true);
+        setErrorIssue('B: Network Connection Error');
       }
 
       setLoading(false);
@@ -69,7 +67,7 @@ export default function Navbar({ isAuthenticated }) {
       });
 
       if (!res.ok) {
-        setErrorIssue(res.message || 'Sorry, we are unable to logout you at the moment.');
+        setErrorIssue('Sorry, we are unable to log you out at the moment.');
         throw new Error('Failed to logout');
       }
 
@@ -77,11 +75,13 @@ export default function Navbar({ isAuthenticated }) {
       window.location.href = '/';
     } catch (error) {
       setShowAlert(true);
+      console.error(error);
     }
   };
 
   return (
     <>
+      <Toaster />
       {showAlert && (
         <div role="alert" className="alert">
           <svg
@@ -95,7 +95,9 @@ export default function Navbar({ isAuthenticated }) {
               strokeWidth="2"
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <span>We are unable to verify you. Please check your network connection and reload this page. <strong>{errorIssue}</strong></span>
+          <span>
+            We are unable to verify you. Please check your network connection and reload this page. <strong>{errorIssue}</strong>
+          </span>
           <div>
             <button className="btn btn-sm btn-outline btn-warning" onClick={() => window.location.reload()}>Reload</button>
           </div>
@@ -112,53 +114,7 @@ export default function Navbar({ isAuthenticated }) {
               <Link to="/" className="font-bold text-lg flex-1 px-2 mx-2">
                 NotReal003
               </Link>
-              <div className="dropdown dropdown-bottom dropdown-end">
-                <div tabIndex={0} role="button" className="btn m-1 btn-sm">
-                  Display
-                  <svg
-                    width="12px"
-                    height="12px"
-                    className="inline-block h-2 w-2 fill-current opacity-60"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 2048 2048">
-                    <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-                  </svg>
-                </div>
-                <ul tabIndex={0} className="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
-                  <li>
-                    <input
-                      type="radio"
-                      name="theme-dropdown"
-                      className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                      aria-label="Auto"
-                      value="default" />
-                  </li>
-                  <li>
-                    <input
-                      type="radio"
-                      name="theme-dropdown"
-                      className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                      aria-label="Dracula"
-                      value="dracula" />
-                  </li>
-                  <li>
-                    <input
-                      type="radio"
-                      name="theme-dropdown"
-                      className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                      aria-label="Aqua"
-                      value="aqua" />
-                  </li>
-                  <li>
-                    <input
-                      type="radio"
-                      name="theme-dropdown"
-                      className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                      aria-label="Night"
-                      value="night" />
-                  </li>
-                </ul>
-              </div>
+
               <div className="dropdown dropdown-bottom dropdown-end">
                 <div tabIndex={0} role="button" className="btn m-1 btn-sm flex items-center justify-center"><MdNavigateNext />Requests</div>
                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
@@ -188,23 +144,31 @@ export default function Navbar({ isAuthenticated }) {
                   </button>
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40">
                     {isAuthenticated ? (
-                      <li>
-                        <Link to="/profile" className="flex items-center gap-x-3">
-                          <FcSettings /> Profile
-                        </Link>
-                        <span onClick={handleLogout} className="flex items-center gap-x-3 hover:text-red-500">
-                          <ImExit className="size-3" /> <span>Sign out</span>
-                        </span>
-                      </li>
+                      <>
+                        <li>
+                          <Link to="/profile" className="flex items-center gap-x-3">
+                            <FcSettings /> Profile
+                          </Link>
+                        </li>
+                        <li>
+                          <span onClick={handleLogout} className="flex items-center gap-x-3 hover:text-red-500 cursor-pointer">
+                            <ImExit className="size-3" /> <span>Sign out</span>
+                          </span>
+                        </li>
+                      </>
                     ) : (
-                      <li>
-                        <Link to="https://api.notreal003.xyz/auth/signin" className="flex items-center gap-x-2 hover:text-blue-500">
-                          <IoLogIn className="size-4" /> <span>Sign in with Discord</span>
-                        </Link>
-                        <Link to="https://request.notreal003.xyz/email-signin" className="flex items-center gap-x-2 hover:text-blue-500">
-                          <IoLogIn className="size-4" /> <span>Sign in with Email</span>
-                        </Link>
-                      </li>
+                      <>
+                        <li>
+                          <Link to="https://api.notreal003.xyz/auth/signin" className="flex items-center gap-x-2 hover:text-blue-500">
+                            <IoLogIn className="size-4" /> <span>Sign in with Discord</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="https://request.notreal003.xyz/email-signin" className="flex items-center gap-x-2 hover:text-blue-500">
+                            <IoLogIn className="size-4" /> <span>Sign in with Email</span>
+                          </Link>
+                        </li>
+                      </>
                     )}
                   </ul>
                 </div>
