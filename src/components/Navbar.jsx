@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa";
 import { IoLogIn } from "react-icons/io5";
 import { ImExit, ImSpinner6 } from "react-icons/im";
@@ -13,6 +13,7 @@ export default function Navbar({ isAuthenticated }) {
   const [showAlert, setShowAlert] = useState(false);
   const [errorIssue, setErrorIssue] = useState('');
   const API = process.env.REACT_APP_API;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -58,6 +59,10 @@ export default function Navbar({ isAuthenticated }) {
       setLoading(false);
     }
   }, [isAuthenticated, API]);
+
+  const handleRedirect = async () => {
+    navigate('/profile');
+  }
 
   const handleLogout = async () => {
     try {
@@ -186,12 +191,12 @@ export default function Navbar({ isAuthenticated }) {
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40">
                     {isAuthenticated ? (
                       <li>
-                        <Link to="/profile" className="flex items-center gap-x-3">
+                        <span onClick={handleRedirect} className="flex items-center gap-x-3">
                           <FcSettings /> Profile
-                        </Link>
-                        <Link onClick={handleLogout} className="flex items-center gap-x-3 hover:text-red-500">
+                        </span>
+                        <span onClick={handleLogout} className="flex items-center gap-x-3 hover:text-red-500">
                           <ImExit className="size-3" /> <span>Sign out</span>
-                        </Link>
+                        </span>
                       </li>
                     ) : (
                       <li>
