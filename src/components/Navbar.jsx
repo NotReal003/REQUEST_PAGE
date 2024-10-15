@@ -46,8 +46,8 @@ export default function Navbar({ isAuthenticated }) {
         const userData = await res.json();
         setUser(userData);
       } catch (error) {
-        if (error.code === 'ERR_NETWORK');
-        toast.error(error);
+        console.error(error);
+        toast.error('Something went wrong!');
         //setShowAlert(true);
         //setErrorIssue('C: Network Connection Error');
       }
