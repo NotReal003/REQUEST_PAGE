@@ -79,9 +79,6 @@ export default function Navbar({ isAuthenticated }) {
       setShowAlert(true);
     }
   };
-  const handleRedirect = async () => {
-    navigate('/profile');
-  };
 
   return (
     <>
@@ -192,9 +189,9 @@ export default function Navbar({ isAuthenticated }) {
                   <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40">
                     {isAuthenticated ? (
                       <li>
-                        <span onClick={handleRedirect} className="flex items-center gap-x-3">
+                        <Link to="/profile" className="flex items-center gap-x-3">
                           <FcSettings /> Profile
-                        </span>
+                        </Link>
                         <span onClick={handleLogout} className="flex items-center gap-x-3 hover:text-red-500">
                           <ImExit className="size-3" /> <span>Sign out</span>
                         </span>
