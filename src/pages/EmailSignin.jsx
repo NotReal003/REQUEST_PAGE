@@ -92,7 +92,7 @@ const EmailSignin = () => {
               <div className="mb-4">
                 <input
                   type="text"
-                  placeholder="6-Digit Code"
+                  placeholder="XXXXXX"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   className="input input-bordered w-full"
@@ -103,6 +103,9 @@ const EmailSignin = () => {
               <button type="submit" className="btn no-animation btn-primary w-full" disabled={loading}>
                 {loading ? <span><FaSpinner className="animate-spin inline-block mr-2" /> Verify Code </span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify Code</span>}
               </button>
+              <div className="flex items-center justify-center mt-2">
+                <p className="mt-2 text-xs text-gray-400">Check your E-mail inbox, if its not there then check spam box.</p>
+              </div>
             </form>
           </>
         )}

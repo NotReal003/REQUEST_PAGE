@@ -132,7 +132,7 @@ const EmailSignup = () => {
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Enter verification code"
+                placeholder="XXXXXX"
                 className="input input-bordered w-full"
                 value={verificationCode}
                 onChange={(e) => setVerificationCode(e.target.value)}
@@ -144,6 +144,9 @@ const EmailSignup = () => {
               type="submit" className="btn no-animation btn-primary w-full no-animation">
               {loading ? <span> <FaSpinner className="animate-spin inline-block align-middle mr-2" />Verify</span> : <span><IoLogIn className="inline-block align-middle mr-2" />Verify</span>}
             </button>
+            <div className="flex items-center justify-center mt-2">
+              <p className="mt-2 text-xs text-gray-400">Check your E-mail inbox, if its not there then check spam box.</p>
+            </div>
           </form>
         )}
       </div>
