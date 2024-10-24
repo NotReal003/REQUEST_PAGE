@@ -39,6 +39,7 @@ const Footer = () => {
       </nav>
       <aside>
         <p>Copyright © 2024 <a href="https://notreal003.xyz" className="hover:underline">NotReal003</a> - All rights reserved.</p>
+        <a href="//www.dmca.com/Protection/Status.aspx?ID=06a7e07d-65ce-4e2c-b9ad-296e1ee1586a" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-05.png?ID=06a7e07d-65ce-4e2c-b9ad-296e1ee1586a"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
       </aside>
     </footer>
   );
