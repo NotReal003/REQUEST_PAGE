@@ -15,18 +15,18 @@ const Footer = () => {
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
               <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+              <li class="mt-2 mb-2">
+                <a href="https://support.notreal003.xyz" class="hover:underline">Support</a>
+              </li>
+              <li class="mt-2 mb-2">
+                <a href="https://github.com/NotReal003/Requests" class="hover:underline">Open Source API</a>
+              </li>
               <ul class="text-gray-500 dark:text-gray-400 font-medium">
                 <li class="mb-2 mt-2">
                   <Link to="/about" class="hover:underline">About This System</Link>
                 </li>
-                <li>
-                  <a href="https://github.com/NotReal003/Requests" class="mt-2 mb-2 hover:underline">Github open Source</a>
-                </li>
-                <li>
-                  <a href="https://github.com/NotReal003/Requests" class="mt-2 mb-2hover:underline">Open Source API</a>
-                </li>
-                <li>
-                  <a href="https://support.notreal003.xyz" class="mt-2 mb-2 hover:underline">Support</a>
+                <li class="mt-2">
+                  <a href="https://github.com/NotReal003/Requests" class="hover:underline">Github open Source</a>
                 </li>
               </ul>
             </div>
@@ -38,18 +38,18 @@ const Footer = () => {
                   <a href="https://github.com/NotReal003" class="hover:underline ">Github</a>
                 </li>
 
-                <li>
+                <li class="mt-2 mb-2">
 
-                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="mt-2 mb-2 hover:underline">YouTube</a>
+                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">YouTube</a>
                 </li>
-                <li>
+                <li class="mt-2 mb-2">
 
-                  <a href="https://twitter.com/NotNT77" class="mt-2 mb-2 hover:underline">Twitter</a>
+                  <a href="https://twitter.com/NotNT77" class="hover:underline">Twitter</a>
 
                 </li>
 
-                <li>
-                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="mt-2 mb-2 hover:underline">Discord</a>
+                <li class="mt-2">
+                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">Discord</a>
                 </li>
 
               </ul>
