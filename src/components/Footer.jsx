@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
           <div class="mb-6 md:mb-0">
               <a href="https://notreal003.xyz/" class="flex items-center">
                   <img src="https://i.postimg.cc/8cJ0NZQR/IMG-7342.png" class="h-8 me-3" alt="NotReal003" />
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NotReal003</span>
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white hover:underline">NotReal003</span>
               </a>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -16,22 +17,34 @@ const Footer = () => {
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://request.notreal003.xyz/about" class="hover:underline">About This System</a>
+                          <Link to="/about" class="hover:underline">About This System</Link>
                       </li>
                       <li>
                           <a href="https://github.com/NotReal003/Requests" class="hover:underline">Github open Source</a>
                       </li>
+                        <li>
+                          <a href="https://github.com/NotReal003/Requests" class="hover:underline">Open Source API</a>
+                        </li>
+                          <li>
+                            <a href="https://support.notreal003.xyz" class="hover:underline">Support</a>            
+                      </li>
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow me on Github</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow me</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
                           <a href="https://github.com/NotReal003" class="hover:underline ">Github</a>
                       </li>
                       <li>
-                          <a href="https://notreal003.xyz/discord" class="hover:underline">Discord</a>
+                          <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">YouTube</a>
                       </li>
+                    <li>
+                      <a href="https://twitter.com/NotNT77" class="hover:underline">Twitter</a>
+                    </li>
+                    <li>
+                      <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">Discord</a>"
+                    </li>
                   </ul>
               </div>
               <div>
