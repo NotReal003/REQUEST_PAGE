@@ -16,17 +16,17 @@ const Footer = () => {
             <div>
               <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
               <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
+                <li class="mb-2">
                   <Link to="/about" class="hover:underline">About This System</Link>
                 </li>
                 <li>
-                  <a href="https://github.com/NotReal003/Requests" class="hover:underline">Github open Source</a>
+                  <a href="https://github.com/NotReal003/Requests" class="mb-2 hover:underline">Github open Source</a>
                 </li>
                 <li>
-                  <a href="https://github.com/NotReal003/Requests" class="hover:underline">Open Source API</a>
+                  <a href="https://github.com/NotReal003/Requests" class="mb-2 hover:underline">Open Source API</a>
                 </li>
                 <li>
-                  <a href="https://support.notreal003.xyz" class="hover:underline">Support</a>
+                  <a href="https://support.notreal003.xyz" class="mb-2 hover:underline">Support</a>
                 </li>
               </ul>
             </div>
@@ -34,22 +34,22 @@ const Footer = () => {
               <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow me</h2>
               <ul class="text-gray-500 dark:text-gray-400 font-medium">
 
-                <li class="mb-4">
+                <li class="mb-2">
                   <a href="https://github.com/NotReal003" class="hover:underline ">Github</a>
                 </li>
 
                 <li>
 
-                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">YouTube</a>
+                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="mb-2 hover:underline">YouTube</a>
                 </li>
                 <li>
 
-                  <a href="https://twitter.com/NotNT77" class="hover:underline">Twitter</a>
+                  <a href="https://twitter.com/NotNT77" class="mb-2 hover:underline">Twitter</a>
 
                 </li>
 
                 <li>
-                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="hover:underline">Discord</a>
+                  <a href="https://youtube.com/@notnt77?si=9FVgJdCAoYPsJjTB" class="mt-2 hover:underline">Discord</a>
                 </li>
 
               </ul>
@@ -71,6 +71,9 @@ const Footer = () => {
         <div class="sm:flex sm:items-center sm:justify-between">
           <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://notreal003.xyz" class="hover:underline">NotReal003</a>. All Rights Reserved.
           </span>
+          <a href="//www.dmca.com/Protection/Status.aspx?ID=06a7e07d-65ce-4e2c-b9ad-296e1ee1586a" title="DMCA.com Protection Status" class="dmca-badge"> 
+          <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=06a7e07d-65ce-4e2c-b9ad-296e1ee1586a"  alt="DMCA.com Protection Status" /></a>
+          <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
             <a href="https://notreal003.xyz/discord" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
               <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
