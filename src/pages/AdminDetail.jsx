@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import toast, { Toaster } from 'react-hot-toast';
 import { MdDelete, MdUpdate } from 'react-icons/md';
 
 function AdminDetail() {
@@ -64,6 +65,7 @@ function AdminDetail() {
           type: 'success',
           message: updateResponse.data.message || 'Request updated successfully.',
         });
+        toast.success(updateResposnse.data.message || 'Request Updated Successfully.');
 
         // Send the email notification
         const emailResponse = await axios.post(
@@ -82,17 +84,20 @@ function AdminDetail() {
             type: 'success',
             message: 'Email notification sent successfully.',
           });
+          toast.success('Updated user on email :)');
         } else {
           setAlert({
             type: 'warning',
             message: 'Failed to send email notification.',
           });
+          toast.error('Unable to send email :/');
         }
       } else {
         setAlert({
           type: 'warning',
           message: updateResponse.data.message || 'Request was updated but something might have gone wrong.',
         });
+        toast.error(message: updateResponse.data.message || 'Request was updated but something might have gone wrong.');
       }
     } catch (error) {
       if (error.response) {
@@ -100,11 +105,13 @@ function AdminDetail() {
           type: 'error',
           message: error.response.data.message || 'Error updating the request.',
         });
+        toast.error(error.response.data.message || 'Error updating the request.');
       } else {
         setAlert({
           type: 'error',
           message: 'An unknown error occurred while updating the request.',
         });
+        toast.error('Something is wrong :/');
       }
     }
   };
@@ -118,6 +125,7 @@ function AdminDetail() {
         headers: { Authorization: `${token}` },
       });
       setAlert({ type: 'success', message: 'Request deleted successfully.' });
+      toast.success('deleted request');
       navigate('/admin'); // Redirect back to the admin dashboard
     } catch (error) {
       setAlert({ type: 'error', message: 'Error deleting request.' });
