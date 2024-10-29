@@ -63,9 +63,8 @@ const ReportForm = () => {
         body: JSON.stringify(payload)
       });
 
-      if (response.status === 403) {
-        toast.error('Your access has been denied, please login again.');
-        return;
+      if (response.status === 0) {
+        toast.error("Please Check Your Network Connection");
       }
 
       const data = await response.json();
@@ -111,7 +110,7 @@ const ReportForm = () => {
             value={messageLink}
             onChange={(e) => setMessageLink(e.target.value)}
             required
-            maxLength={500}
+            maxLength={200}
           />
 
           <label htmlFor="additionalInfo" className="label">Anything else you would like to add?</label>
@@ -137,7 +136,7 @@ const ReportForm = () => {
                 required
               />
               <span className="label-text ml-2">
-                By clicking here you are By clicking here you will agree with NotReal003's{' '}
+                By clicking here you will agree with NotReal003's{' '}
                 <a href="https://support.notreal003.xyz/terms" className="link link-primary" target="_blank" rel="noopener noreferrer">Terms of Service</a> and{' '}
                 <a href="https://support.notreal003.xyz/privacy" className="link link-primary" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
               </span>
