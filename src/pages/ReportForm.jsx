@@ -80,7 +80,7 @@ const ReportForm = () => {
       }
     } catch (error) {
       console.error('Error: ', error);
-      toast.error('An error occurred while submitting your report. Please try again later.');
+      toast.error(error || 'Please check your network');
     } finally {
       setIsSubmitting(false);
     }
