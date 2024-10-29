@@ -64,7 +64,7 @@ function AdminDetail() {
         setAlert({
           type: 'success',
           message: updateResponse.data.message || 'Request updated successfully.',
-        });
+        })
         toast.success(updateResposnse.data.message || 'Request Updated Successfully.');
 
         // Send the email notification
@@ -83,20 +83,20 @@ function AdminDetail() {
           setAlert({
             type: 'success',
             message: 'Email notification sent successfully.',
-          });
+          })
           toast.success('Updated user on email :)');
         } else {
           setAlert({
             type: 'warning',
             message: 'Failed to send email notification.',
-          });
+          })
           toast.error('Unable to send email :/');
         }
       } else {
         setAlert({
           type: 'warning',
           message: updateResponse.data.message || 'Request was updated but something might have gone wrong.',
-        });
+        })
         toast.error(updateResponse.data.message || 'Request was updated but something might have gone wrong.');
       }
     } catch (error) {
@@ -104,13 +104,13 @@ function AdminDetail() {
         setAlert({
           type: 'error',
           message: error.response.data.message || 'Error updating the request.',
-        });
+        })
         toast.error(error.response.data.message || 'Error updating the request.');
       } else {
         setAlert({
           type: 'error',
           message: 'An unknown error occurred while updating the request.',
-        });
+        })
         toast.error('Something is wrong :/');
       }
     }
