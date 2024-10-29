@@ -6,7 +6,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { MdDelete, MdUpdate } from 'react-icons/md';
 
 function AdminDetail() {
-  const { requestId } = useParams();
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestId = urlParams.get('id');
   const [request, setRequest] = useState(null);
   const [alert, setAlert] = useState(null);
   const [status, setStatus] = useState('');
