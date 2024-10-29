@@ -32,14 +32,10 @@ function AdminDetail() {
       } catch (error) {
         const errorStatus = error.response?.status;
 
-        // Handle 403 forbidden
         if (errorStatus === 403) {
           navigate('/404');
         } else {
-          setAlert({
-            type: 'error',
-            message: 'Error while fetching the request details.',
-          });
+          toast.warn('Something went wrong, please try again later');
         }
       }
     };
@@ -53,7 +49,6 @@ function AdminDetail() {
       const ids = urlParams.get('id');
       const token = localStorage.getItem('jwtToken');
 
-      // Update the request status and review message
       const updateResponse = await axios.put(
         `${API}/admin/${ids}`,
         { status, reviewMessage },
@@ -61,13 +56,9 @@ function AdminDetail() {
       );
 
       if (updateResponse.status === 200) {
-        setAlert({
-          type: 'success',
-          message: updateResponse.data.message || 'Request updated successfully.',
-        })
-        toast.success(updateResposnse.data.message || 'Request Updated Successfully.');
+        toast.success(updateResponse.data.message || 'Request Updated Successfully.');
 
-        // Send the email notification
+        // Send the email
         const emailResponse = await axios.post(
           `${API}/admin/send/email`,
           {
@@ -80,37 +71,18 @@ function AdminDetail() {
         );
 
         if (emailResponse.status === 200) {
-          setAlert({
-            type: 'success',
-            message: 'Email notification sent successfully.',
-          })
           toast.success('Updated user on email :)');
         } else {
-          setAlert({
-            type: 'warning',
-            message: 'Failed to send email notification.',
-          })
           toast.error('Unable to send email :/');
         }
       } else {
-        setAlert({
-          type: 'warning',
-          message: updateResponse.data.message || 'Request was updated but something might have gone wrong.',
-        })
-        toast.error(updateResponse.data.message || 'Request was updated but something might have gone wrong.');
+        toast.warn(updateResponse.data.message || 'Request was updated but something might have gone wrong.');
       }
     } catch (error) {
       if (error.response) {
-        setAlert({
-          type: 'error',
-          message: error.response.data.message || 'Error updating the request.',
-        })
         toast.error(error.response.data.message || 'Error updating the request.');
+        
       } else {
-        setAlert({
-          type: 'error',
-          message: 'An unknown error occurred while updating the request.',
-        })
         toast.error('Something is wrong :/');
       }
     }
@@ -124,22 +96,18 @@ function AdminDetail() {
       await axios.delete(`/api/admin/${ids}`, {
         headers: { Authorization: `${token}` },
       });
-      setAlert({ type: 'success', message: 'Request deleted successfully.' });
-      toast.success('deleted request');
+      toast.success('Request deleted successfully.');
       navigate('/admin'); // Redirect back to the admin dashboard
     } catch (error) {
-      setAlert({ type: 'error', message: 'Error deleting request.' });
-    }
+      toast.error('Error deleting the request.');
     setShowDeleteModal(false);
   };
 
   if (!request) {
     return (
       <div className="flex w-52 flex-col gap-4 container mx-auto px-4 py-8">
-        {/* Skeleton loaders */}
         <div className="skeleton h-32 w-full"></div>
         <div className="skeleton h-6 w-30"></div>
-        {/* Additional skeleton elements */}
       </div>
     );
   }
