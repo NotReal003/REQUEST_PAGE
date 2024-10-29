@@ -18,14 +18,12 @@ function AdminDetail() {
   useEffect(() => {
     const fetchRequest = async () => {
       try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const ids = urlParams.get('id');
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.get(`${API}/admin/requests/${ids}`, {
+        const response = await axios.get(`${API}/admin/requests/${requestId}`, {
           headers: { Authorization: `${token}` },
         });
 
-        // Success case, set the request data
+        // Success case
         setRequest(response.data);
         setStatus(response.data.status);
         setReviewMessage(response.data.reviewMessage || '');
@@ -45,12 +43,10 @@ function AdminDetail() {
 
   const handleUpdateAndSendEmail = async () => {
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const ids = urlParams.get('id');
       const token = localStorage.getItem('jwtToken');
 
       const updateResponse = await axios.put(
-        `${API}/admin/${ids}`,
+        `${API}/admin/${requestId}`,
         { status, reviewMessage },
         { headers: { Authorization: `${token}` } }
       );
@@ -62,7 +58,7 @@ function AdminDetail() {
         const emailResponse = await axios.post(
           `${API}/admin/send/email`,
           {
-            requestId: ids,
+            requestId,
             reviewMessage,
             status,
             username: request.username,
@@ -81,7 +77,6 @@ function AdminDetail() {
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message || 'Error updating the request.');
-        
       } else {
         toast.error('Something is wrong :/');
       }
@@ -89,17 +84,16 @@ function AdminDetail() {
   };
 
   const handleDelete = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ids = urlParams.get('id');
     const token = localStorage.getItem('jwtToken');
     try {
-      await axios.delete(`/api/admin/${ids}`, {
+      await axios.delete(`${API}/admin/${requestId}`, {
         headers: { Authorization: `${token}` },
       });
       toast.success('Request deleted successfully.');
       navigate('/admin'); // Redirect back to the admin dashboard
     } catch (error) {
       toast.error('Error deleting the request.');
+    }
     setShowDeleteModal(false);
   };
 
@@ -237,7 +231,7 @@ function AdminDetail() {
               </button>
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="btn btn-secondary"
+                className="btn"
               >
                 Cancel
               </button>
@@ -245,6 +239,7 @@ function AdminDetail() {
           </div>
         </div>
       )}
+      <Toaster />
     </div>
   );
 }
