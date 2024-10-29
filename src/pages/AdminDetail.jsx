@@ -97,7 +97,7 @@ function AdminDetail() {
           type: 'warning',
           message: updateResponse.data.message || 'Request was updated but something might have gone wrong.',
         });
-        toast.error(message: updateResponse.data.message || 'Request was updated but something might have gone wrong.');
+        toast.error(updateResponse.data.message || 'Request was updated but something might have gone wrong.');
       }
     } catch (error) {
       if (error.response) {
