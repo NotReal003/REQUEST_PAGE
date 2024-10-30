@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa";
 import { IoLogIn } from "react-icons/io5";
 import { ImExit, ImSpinner6 } from "react-icons/im";
@@ -14,7 +14,6 @@ export default function Navbar({ isAuthenticated }) {
   const [showAlert, setShowAlert] = useState(false);
   const [errorIssue, setErrorIssue] = useState('');
   const API = process.env.REACT_APP_API;
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -43,6 +42,9 @@ export default function Navbar({ isAuthenticated }) {
 
         const userData = await res.json();
         setUser(userData);
+        if (userData.staff === true) {
+          toast('Welcome Staff Member');
+        }
       } catch (error) {
         console.error(error);
         toast.error('Something went wrong!');
@@ -96,7 +98,7 @@ export default function Navbar({ isAuthenticated }) {
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
           <span>
-            We are unable to verify you. Please check your network connection and reload this page. <strong>{errorIssue}</strong>
+            We are unable to verify you: <strong>{errorIssue}</strong>
           </span>
           <div>
             <button className="btn btn-sm btn-outline btn-warning" onClick={() => window.location.reload()}>Reload</button>

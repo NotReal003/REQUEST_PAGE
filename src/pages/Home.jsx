@@ -17,7 +17,10 @@ const Home = () => {
       headers: { Authorization: `${token}` }
     })
       .then(response => {
-        if (response.data.id === ADMINW) { // Check admin ID
+        if (response.data.staff === true) { // Check if user is staff
+          setIsAdmin(true);
+        }
+        if (response.data.id === ADMINW) {
           setIsAdmin(true);
         }
       })
