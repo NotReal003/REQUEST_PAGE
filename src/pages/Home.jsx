@@ -9,6 +9,7 @@ import axios from 'axios';
 const Home = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const API = process.env.REACT_APP_API;
+  const ADMINW = process.env.REACT_APP_ADMIN;
 
   useEffect(() => {
     const token = localStorage.getItem('jwtToken');
@@ -16,7 +17,7 @@ const Home = () => {
       headers: { Authorization: `${token}` }
     })
       .then(response => {
-        if (response.data.id === '1131271104590270606') { // Check admin ID
+        if (response.data.id === ADMINW) { // Check admin ID
           setIsAdmin(true);
         }
       })

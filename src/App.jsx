@@ -25,7 +25,7 @@ import About from './pages/About';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true); // New state to manage loading
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -40,11 +40,11 @@ const App = () => {
         setIsAuthenticated(true);
       }
     }
-    setLoading(false); // Set loading to false after token check
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <div className="loading loading-spinner text-info"></div>; // Show a loading state while checking token
+    return <div className="loading loading-spinner text-info"></div>;
   }
 
   return (

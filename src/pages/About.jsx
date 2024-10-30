@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="container mx-auto p-6">
       <header className="text-center mb-8 bg-base-100">
-        <h1 className="text-xl font-bold mb-4">Request Management System</h1>
+        <h1 className="text-xl font-bold mb-4">Request Management Portal</h1>
         <p className="text-md font-serif">
           A comprehensive platform to manage user requests with authentication, notifications, and admin control.
         </p>

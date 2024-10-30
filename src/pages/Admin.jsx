@@ -38,7 +38,6 @@ const RequestStatus = ({ status }) => {
   );
 };
 
-// Request Icon Component
 const RequestIcon = ({ type }) => {
   const iconClass = 'text-2xl sm:text-3xl md:text-4xl mr-2 sm:mr-3 md:mr-4';
   if (type === 'report') {
@@ -51,7 +50,6 @@ const RequestIcon = ({ type }) => {
   return null;
 };
 
-// Loading Skeleton Component
 const LoadingSkeleton = () => (
   <div className="flex items-center justify-center space-x-2">
     <span className="loading loading-spinner text-info"></span>
@@ -59,7 +57,6 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-// Error Alert Component
 const ErrorAlert = ({ message }) => (
   <div className="alert alert-error shadow-lg">
     <div>
@@ -71,7 +68,6 @@ const ErrorAlert = ({ message }) => (
   </div>
 );
 
-// Filter Controls Component
 const FilterControls = ({ statusFilter, setStatusFilter, userIdFilter, setUserIdFilter, handleToggleApiStatus, apiClosed }) => (
   <div className="mb-4 flex flex-col sm:flex-row justify-between">
     <div className="space-x-2">
@@ -151,6 +147,7 @@ const Admin = () => {
   const token = localStorage.getItem('jwtToken');
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API;
+  const ADMINW = process.env.REACT_APP_ADMIN;
 
   const handleToggleApiStatus = async () => {
     const confirmMessage = apiClosed ? 'open the API' : 'close the API';
@@ -186,7 +183,6 @@ const Admin = () => {
         // Success case
         let filteredRequests = response.data;
 
-        // Filter requests by status
         if (statusFilter) {
           filteredRequests = filteredRequests.filter((request) => request.status === statusFilter);
         }

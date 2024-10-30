@@ -23,7 +23,7 @@ const Footer = () => {
                 <a href="https://github.com/NotReal003/Requests" class="hover:underline">Open Source API</a>
               </li>
                 <li class="mb-2 mt-2">
-                  <Link to="/about" class="hover:underline">About This System</Link>
+                  <Link to="/about" class="hover:underline">About This Portal</Link>
                 </li>
                 <li class="mt-2">
                   <a href="https://github.com/NotReal003/Requests" class="hover:underline">Github open Source</a>
