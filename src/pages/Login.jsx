@@ -4,30 +4,42 @@ import { Link } from 'react-router-dom';
 import { IoLogoGithub } from "react-icons/io";
 
 const Login = () => {
+  const handleDiscordLogin = () => {
+    window.location.href = 'https://api.notreal003.xyz/auth/signin';
+  };
+
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 max-w-md md:max-w-lg mx-auto shadow-lg rounded-lg">
-      <div className="bg-gradient-to-br from-black-400 via-black-500 to-black-600 p-8 bg-opacity-10 rounded-lg shadow-lg max-w-sm ml-2 mr-2 m-2 w-full">
-        <h1 className="text-xl font-bold mb-4 text-center text-white">Login</h1>
+    <div className="h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 px-4">
+      <div className="bg-black bg-opacity-60 p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <h1 className="text-2xl font-bold mb-4 text-center text-white">Login</h1>
         <p className="text-center text-white mb-8">Choose a login method to continue.</p>
+
         <button
-          onClick={() => window.location.href = `https://api.notreal003.xyz/auth/signin`}
-          className="btn btn-outline btn-primary w-full mt-5 flex items-center justify-center transition-all duration-200 no-animation hover:bg-primary hover:border-primary hover:text-white"
+          onClick={handleDiscordLogin}
+          className="btn btn-outline btn-primary w-full flex items-center justify-center gap-2 transition-all duration-200 hover:bg-primary hover:border-primary hover:text-white"
+          aria-label="Login with Discord"
         >
-          <FaDiscord />
-          Login with Discord
+          <FaDiscord aria-hidden="true" />
+          <span>Login with Discord</span>
         </button>
 
-        <Link to="/email-signin" className="btn btn-outline btn-primary w-full mt-5 flex items-center justify-center transition-all duration-200 no-animation hover:bg-primary hover:border-primary hover:text-white">
-          <FaEnvelope />
-          Login with Email
+        <Link
+          to="/email-signin"
+          className="btn btn-outline btn-primary w-full mt-5 flex items-center justify-center gap-2 transition-all duration-200 hover:bg-primary hover:border-primary hover:text-white"
+          aria-label="Login with Email"
+        >
+          <FaEnvelope aria-hidden="true" />
+          <span>Login with Email</span>
         </Link>
-        <div className="tooltip tooltip-info w-full" data-tip="GitHub Login is currently not accepted.">
+
+        <div className="tooltip tooltip-info w-full mt-5" data-tip="GitHub Login is currently not accepted.">
           <button
             disabled
-            className="btn btn-outline btn-primary w-full mt-5 flex items-center justify-center transition-all duration-200 no-animation"
+            className="btn btn-outline btn-primary w-full flex items-center justify-center gap-2 transition-all duration-200 cursor-not-allowed"
+            aria-label="GitHub login disabled"
           >
-            <IoLogoGithub />
-            Login with GitHub
+            <IoLogoGithub aria-hidden="true" />
+            <span>Login with GitHub</span>
           </button>
         </div>
 
